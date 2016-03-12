@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const M2X = require('m2x');
 const m2x = new M2X( process.env.M2X_APIKEY );
+const bluebird = require('bluebird');
 var TIMESTAMP = Date.now();
 // express().use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -18,7 +19,7 @@ router.get('/test', (req,res)=>{
   res.send({ success : true });
 });
 
-// meta-stream is a required stream to have since it tracks other streams.
+// meta-stream is a required non-numeric stream to have since it tracks other streams.
 router.get('/meta-stream', (req,res)=>{
   m2x.devices.stream( device_id, "meta-stream", function(response) {
       console.log(response.json);
@@ -70,13 +71,47 @@ router.delete('/task/:id', (req,res)=>{
   });
 });
 
-router.get('/task/:id/node/:node', (req,res)=>{
-  var node = req.params.node;
-  var payload = {
-
+router.get('/node/:id', (req,res)=>{
+  var node = req.params.id;
+  var mock = {
+    jobs: [
+      {
+        "stream_id": "something-123",
+        "nodes": ["node1","node2"], // nodes participating in stream
+        "complete": false,
+        "created_at": TIMESTAMP // cheap use of time tracking for visual display
+      },
+      {
+        "stream_id": "something-456",
+        "nodes": ["node3"], 
+        "complete": false,
+        "created_at": TIMESTAMP
+      },
+      {
+        "stream_id": "something-789",
+        "nodes": ["node1","node2","node3"],
+        "complete": false,
+        "created_at": TIMESTAMP
+      }
+    ]
   };
-  m2x.devices.setStreamValue( device_id, req.params.id, payload, function(response) {
-    res.send(response.json);
+
+  m2x.devices.stream( device_id, 'meta-stream', function(response) {
+    if( response != null ){
+      var jobs = mock.jobs; // for testing
+      // var jobs = response.json.jobs;      
+    } else {
+      return res.send([]);
+    }
+
+    var parsed_res = jobs.filter( function( job ){
+       if (job.nodes.indexOf(node) != -1 ){
+        return true;
+       } else {
+        return false;
+       }
+    });
+    return res.send(parsed_res);
   });
 });
 
