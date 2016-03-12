@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "microManager",
+    "style": "sass",
+    "postcss": false
+  }
+}
