@@ -1,0 +1,22 @@
+{
+  jobs: [
+    {
+      "stream_id": "something-123",
+      "nodes": ["node1","node2"], // nodes participating in stream
+      "complete": false,
+      "created_at": TIMESTAMP // cheap use of time tracking for visual display
+    },
+    {
+      "stream_id": "something-456",
+      "nodes": ["node1","node3"], 
+      "complete": false,
+      "created_at": TIMESTAMP
+    },
+    {
+      "stream_id": "something-789",
+      "nodes": ["node1","node2","node3"],
+      "complete": false,
+      "created_at": TIMESTAMP
+    }
+  ]
+}
