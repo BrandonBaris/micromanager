@@ -13,13 +13,12 @@ import { connect } from 'react-redux';
 import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
-  componentWillMount(){
+  componentWillMount() {
     setInterval(this.props.actions.getJobs, 2500);
   }
-
   render() {
     const {actions, jobs} = this.props;
-    return <Main jobs={jobs} actions={actions} />;
+    return <Main jobs={jobs} actions={actions}/>;
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -38,7 +37,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { getJobs: require('../actions/getJobs.js') };
+  const actions = {
+    getJobs: require('../actions/getJobs.js'),
+    complete: require('../actions/complete.js')
+  };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }
