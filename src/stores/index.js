@@ -1,8 +1,12 @@
-const redux = require('redux');
+const { createStore, compose } = require('redux');
 const reducers = require('../reducers');
 
 module.exports = function(initialState) {
-  const store = redux.createStore(reducers, initialState)
+  const finalCreateStore = compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )(createStore);
+
+  const store = finalCreateStore(reducers, initialState);
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
