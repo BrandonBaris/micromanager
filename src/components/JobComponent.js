@@ -13,9 +13,9 @@ class JobComponent extends React.Component {
         <h2>{this.props.job_id}</h2>
         <ul className="tasklist-component">
           {
-            this.props.tasks.map((task) => {
+            this.props.tasks.map((task,i) => {
               return (<TaskComponent
-                key={task.node_id}
+                key={i}
                 {...task}
                 {...this.props.actions} />)
             })
