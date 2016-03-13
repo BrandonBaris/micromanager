@@ -199,4 +199,17 @@ router.get('/node/:id', (req,res)=>{
   });
 });
 
+router.post('/complete', (req,res)=>{
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+  var xhr = new XMLHttpRequest();
+  // init speaker session
+  xhr.open("GET","http://10.0.1.9:8080/api/v1/init_session", false);
+  xhr.send();
+  xhr.open("GET","http://10.0.1.9:8080/api/v1/add_device_to_session?SessionToken=LocalServer-1000&DeviceID=60744278816944", false);
+  xhr.send();
+  xhr.open("GET","http://10.0.1.9:8080/api/v1/play_hub_media?SessionToken=LocalServer-1000&PersistentID=1891475512343695163&DeviceID=60744278816944", false);
+  xhr.send();
+  res.send('REQUEST SENT');
+});
+
 module.exports = router;
