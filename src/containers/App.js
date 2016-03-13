@@ -14,11 +14,7 @@ import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   componentWillMount(){
-    this.props.actions.getJobs([{
-      id: 99,
-      title: 'updated',
-      status: 'example'
-    }]);
+    this.props.actions.getJobs();
   }
 
   render() {
@@ -33,7 +29,7 @@ class App extends Component {
  */
 App.propTypes = {
   actions: PropTypes.object.isRequired,
-  jobs: PropTypes.array.isRequired
+  jobs: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
