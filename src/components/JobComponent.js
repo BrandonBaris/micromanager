@@ -35,7 +35,7 @@ JobComponent.propTypes = {
   hard_time_limit: PropTypes.number.isRequired,
   initator: PropTypes.string.isRequired,
   job_id: PropTypes.string.isRequired,
-  start_time: PropTypes.number.isRequired,
+  // start_time: PropTypes.number.isRequired,
   tasks: PropTypes.array.isRequired
 };
 // JobComponent.defaultProps = {};
