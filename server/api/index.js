@@ -107,10 +107,6 @@ var mock_data = JSON.stringify({
   ]
 })
 
-router.get('/test', (req,res)=>{
-  res.send({ success : true });
-});
-
 // meta-stream is a required non-numeric stream to have since it tracks other streams.
 router.get('/meta-stream', (req,res)=>{
   m2x.devices.streamValues( device_id, "meta-stream", function(response) {
@@ -139,30 +135,30 @@ router.put('/meta-stream', (req,res)=>{
 // });
 
 // gets value of task
-router.get('/task/:id', (req,res)=>{
-  m2x.devices.stream( device_id, req.params.id, function(response) {
-    res.send(response.json);
-  });
-});
+// router.get('/task/:id', (req,res)=>{
+//   m2x.devices.stream( device_id, req.params.id, function(response) {
+//     res.send(response.json);
+//   });
+// });
 
 // updates value of stream
-router.put('/task/:id', (req,res)=>{
-  var payload = req.body.value;
-  m2x.devices.setStreamValue( device_id, req.params.id, payload, function(response) {
-    res.send(response.json);
-  });
-});
+// router.put('/task/:id', (req,res)=>{
+//   var payload = req.body.value;
+//   m2x.devices.setStreamValue( device_id, req.params.id, payload, function(response) {
+//     res.send(response.json);
+//   });
+// });
 
 // deletes stream
-router.delete('/task/:id', (req,res)=>{
-  var res_obj = {
-    "status": "success",
-    "message": `STREAM ID [${req.params.id}] DELETED.`
-  }
-  m2x.devices.deleteStream( device_id, req.params.id, function(response) {
-    res.send( res_obj );
-  });
-});
+// router.delete('/task/:id', (req,res)=>{
+//   var res_obj = {
+//     "status": "success",
+//     "message": `STREAM ID [${req.params.id}] DELETED.`
+//   }
+//   m2x.devices.deleteStream( device_id, req.params.id, function(response) {
+//     res.send( res_obj );
+//   });
+// });
 
 // filter jobs by id
 router.get('/node/:id', (req,res)=>{
@@ -205,9 +201,7 @@ router.post('/complete', (req,res)=>{
   // init speaker session
   xhr.open("GET","http://10.0.1.9:8080/api/v1/init_session", false);
   xhr.send();
-  xhr.open("GET","http://10.0.1.9:8080/api/v1/add_device_to_session?SessionToken=LocalServer-1000&DeviceID=60744278816944", false);
-  xhr.send();
-  xhr.open("GET","http://10.0.1.9:8080/api/v1/play_hub_media?SessionToken=LocalServer-1000&PersistentID=1891475512343695163&DeviceID=60744278816944", false);
+  xhr.open("GET","http://10.0.1.9:8080/api/v1/play_hub_media?SessionToken=LocalServer-1000&PersistentID=7408958212746443185&DeviceID=60744278816944", false);
   xhr.send();
   res.send('REQUEST SENT');
 });
