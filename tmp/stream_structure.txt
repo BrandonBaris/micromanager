@@ -1,29 +1,91 @@
 {
-  "task_title": "SOME NAME",
-  "start_time": SOME DATE",
-  "hard_time_limit": 6000, // Optional hard time limit (in seconds) until this task gets completely marked out.  Default should be forever.
-  "initator": "some boss dude", // Master's ID since there can probably be more than 1 taskmaster
-  "check_bypass": false, // Flag to skip master approval. Continues task regardless of actual quality of work on task done by node.
-  "tasks": [
+  jobs: [
     {
-      "node": "some_id1", // the slave to send this task too first `tasks[0]`.
-      "name": "Task 1: Do something.",
-      "time_allocated": 360, // Initial timer in seconds.
-      "completion_time": 0 // Amount of time actually taken to complete task.
-      "complete": false, // To flag this node's completion.
-      "approved": false, // Approval of master else node complete is `false` again.
-      "contested": false, // When flagged, master will be notified with `notes`
-      "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
+      "job_id": "job_name1",
+      "start_time": Date.now(),
+      "hard_time_limit": 6000, // Optional hard time limit (in seconds) until this task gets completely marked out.  Default should be forever.
+      "initator": "some boss dude", // Master's ID since there can probably be more than 1 taskmaster
+      "check_bypass": false, // Flag to skip master approval. Continues task regardless of actual quality of work on task done by node.
+      "tasks": [
+        {
+          "node": "some_id1", // the slave to send this task too first `tasks[0]`.
+          "name": "Task 1: Do something.",
+          "time_allocated": 360, // Initial timer in seconds.
+          "completion_time": 0 // Amount of time actually taken to complete task.
+          "complete": false, // To flag this node's completion.
+          "approved": false, // Approval of master else node complete is `false` again.
+          "contested": false, // When flagged, master will be notified with `notes`
+          "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
+        },
+        {
+          "node": "some_id2", // 2nd node to chain the task potato
+          "name": "Task 2: Do more stuff",
+          "time_allocated": 120,
+          "complete": false,
+          "approved": false,
+          "contested": false,
+          "notes": ""
+        }
+      ]
+      "complete": false
     },
     {
-      "node": "some_id2", // 2nd node to chain the task potato
-      "name": "Task 2: Do more stuff",
-      "time_allocated": 120,
-      "complete": false,
-      "approved": false,
-      "contested": false,
-      "notes": ""
-    }
+      "job_id": "job_name2",
+      "start_time": Date.now(),
+      "hard_time_limit": 6000,
+      "initator": "some boss dude",
+      "check_bypass": false, 
+      "tasks": [
+        {
+          "node": "some_id3",
+          "name": "Task 1: Do something.",
+          "time_allocated": 360,
+          "completion_time": 0 
+          "complete": false, 
+          "approved": false, 
+          "contested": false,
+          "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
+        },
+        {
+          "node": "some_id2",
+          "name": "Task 2: Do more stuff",
+          "time_allocated": 120,
+          "complete": false,
+          "approved": false,
+          "contested": false,
+          "notes": ""
+        }
+      ]
+      "complete": false
+    },
+    {
+      "job_id": "job_name3",
+      "start_time": Date.now(),
+      "hard_time_limit": 6000,
+      "initator": "some boss dude", 
+      "check_bypass": false, 
+      "tasks": [
+        {
+          "node": "some_id1",
+          "name": "Task 1: Do something.",
+          "time_allocated": 360,
+          "completion_time": 0 
+          "complete": false, 
+          "approved": false, 
+          "contested": false,
+          "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
+        },
+        {
+          "node": "some_id2",
+          "name": "Task 2: Do more stuff",
+          "time_allocated": 120,
+          "complete": false,
+          "approved": false,
+          "contested": false,
+          "notes": ""
+        }
+      ]
+      "complete": false
+    },
   ]
-  "status": "pending", // Either `pending`, `stopped` or `completed`
 }
