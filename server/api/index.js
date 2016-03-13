@@ -113,9 +113,9 @@ router.get('/test', (req,res)=>{
 
 // meta-stream is a required non-numeric stream to have since it tracks other streams.
 router.get('/meta-stream', (req,res)=>{
-  m2x.devices.stream( device_id, "meta-stream", function(response) {
-      console.log(response.json);
-      res.send(response.json);
+  m2x.devices.streamValues( device_id, "meta-stream", function(response) {
+      console.log(JSON.parse(response.json.values[0].value));
+      res.send(JSON.parse(response.json.values[0].value));
   });
 });
 
