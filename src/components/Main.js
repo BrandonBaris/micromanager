@@ -28,8 +28,8 @@ class AppComponent extends React.Component {
               New Job
             </button>
           </div>
-          <JobListComponent jobs={jobs} actions={actions} />
         </section>
+        <JobListComponent jobs={jobs} actions={actions} />
       </section>
     );
   }

@@ -14,7 +14,7 @@ import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   componentWillMount(){
-    this.props.actions.getJobs();
+    setInterval(this.props.actions.getJobs, 2500);
   }
 
   render() {
