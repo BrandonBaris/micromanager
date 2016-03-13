@@ -10,8 +10,9 @@ class JobListComponent extends React.Component {
     return (
       <ul className="joblist-component">
         {
-          this.props.jobs.jobs.map((job) => {
+          this.props.jobs.jobs.map((job,i) => {
             return (<JobComponent
+              key={i}
               {...job}
               {...this.props.actions} />)
           })
@@ -24,7 +25,7 @@ class JobListComponent extends React.Component {
 JobListComponent.displayName = 'JobListComponent';
 
 JobListComponent.propTypes = {
-  jobs: PropTypes.array.isRequired,
+  jobs: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 // JobListComponent.defaultProps = {};
