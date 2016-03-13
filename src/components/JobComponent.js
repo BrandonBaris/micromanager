@@ -8,7 +8,8 @@ class JobComponent extends React.Component {
   render() {
     return (
       <div className="job-component">
-        <h3>{this.props.title}</h3>
+        <h3>{this.props.initator}</h3>
+        <h2>{this.props.job_id}</h2>
       </div>
     );
   }
@@ -18,9 +19,13 @@ JobComponent.displayName = 'JobComponent';
 
 // Uncomment properties you need
 JobComponent.propTypes = {
-  id: PropTypes.number.isRequired,
-  status: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  check_bypass: PropTypes.bool.isRequired,
+  complete: PropTypes.bool.isRequired,
+  hard_time_limit: PropTypes.number.isRequired,
+  initator: PropTypes.string.isRequired,
+  job_id: PropTypes.string.isRequired,
+  start_time: PropTypes.number.isRequired,
+  tasks: PropTypes.array.isRequired
 };
 // JobComponent.defaultProps = {};
 

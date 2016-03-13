@@ -1,3 +1,3 @@
-module.exports = function(payload) {
-  return { type: 'GET_JOBS', payload };
+module.exports = function() {
+  return { type: 'GET_JOBS' };
 };

@@ -10,12 +10,9 @@ class JobListComponent extends React.Component {
     return (
       <ul className="joblist-component">
         {
-          this.props.jobs.map((job) => {
+          this.props.jobs.jobs.map((job) => {
             return (<JobComponent
-              key={job.id}
-              id={job.id}
-              title={job.title}
-              status={job.status}
+              {...job}
               {...this.props.actions} />)
           })
         }

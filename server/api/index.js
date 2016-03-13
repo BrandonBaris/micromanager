@@ -7,30 +7,31 @@ const m2x = new M2X( process.env.M2X_APIKEY );
 const bluebird = require('bluebird');
 var TIMESTAMP = Date.now();
 // express().use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 const STREAM_TYPE = {
   NUMERIC : "numeric",
   ALPHANUMERIC : "alphanumeric"
 };
 const M2X_KEY = process.env.M2X_APIKEY;
-const device_id = "fbc1b926ecad75a3d53a4fad6257ea7d";
+// const device_id = "fbc1b926ecad75a3d53a4fad6257ea7d";
+const device_id = "3b0eaa66a0d88ade22a6af2b23378b72";
 
 var mock_data = JSON.stringify({
   "jobs": [
     {
       "job_id": "job_name1",
       "start_time": Date.now(),
-      "hard_time_limit": 6000, 
+      "hard_time_limit": 6000,
       "initator": "some boss dude",
-      "check_bypass": false, 
+      "check_bypass": false,
       "tasks": [
         {
-          "node": "some_id1", 
+          "node": "some_id1",
           "name": "Task 1: Do something.",
-          "time_allocated": 360, 
-          "completion_time": 0, 
-          "complete": false, 
-          "approved": false, 
+          "time_allocated": 360,
+          "completion_time": 0,
+          "complete": false,
+          "approved": false,
           "contested": false,
           "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
         },
@@ -51,15 +52,15 @@ var mock_data = JSON.stringify({
       "start_time": Date.now(),
       "hard_time_limit": 6000,
       "initator": "some boss dude",
-      "check_bypass": false, 
+      "check_bypass": false,
       "tasks": [
         {
           "node": "some_id3",
           "name": "Task 1: Do something.",
           "time_allocated": 360,
           "completion_time": 0,
-          "complete": false, 
-          "approved": false, 
+          "complete": false,
+          "approved": false,
           "contested": false,
           "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
         },
@@ -80,15 +81,15 @@ var mock_data = JSON.stringify({
       "start_time": Date.now(),
       "hard_time_limit": 6000,
       "initator": "some boss dude",
-      "check_bypass": false, 
+      "check_bypass": false,
       "tasks": [
         {
           "node": "some_id1",
           "name": "Task 1: Do something.",
           "time_allocated": 360,
           "completion_time": 0,
-          "complete": false, 
-          "approved": false, 
+          "complete": false,
+          "approved": false,
           "contested": false,
           "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
         },
@@ -169,7 +170,7 @@ router.get('/node/:id', (req,res)=>{
     if( response != null ){
       // jobs = mock_data.jobs; // for testing
       console.log(JSON.parse(response.json.value).jobs);
-      var jobs = JSON.parse(response.json.value).jobs;      
+      var jobs = JSON.parse(response.json.value).jobs;
     } else {
       return res.send([]);
     }
