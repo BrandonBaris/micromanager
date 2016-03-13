@@ -18,6 +18,10 @@ module.exports = function(state = initialState, action) {
         .then((response) => nextState.jobs = response.data.jobs);
       return nextState;
     }
+    case 'COMPLETE': {
+      window.alert("BYE");
+      return nextState;
+    }
     default: {
       /* Return original state if no actions were consumed. */
       return state;
