@@ -8,8 +8,8 @@ require('styles//Job.sass');
 class JobComponent extends React.Component {
   render() {
     return (
-      <div className="job-component">
-        <h3>{this.props.initator}</h3>
+      <div className="job-component job-id">
+        <h3 className="subtaskName">{this.props.initator}</h3>
         <h2>{this.props.job_id}</h2>
         <ul className="tasklist-component">
           {
