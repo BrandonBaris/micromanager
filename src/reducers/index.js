@@ -8,5 +8,5 @@
  */
 import { combineReducers } from 'redux';
 /* Populated by react-webpack-redux:reducer */
-const reducers = {};
+const reducers = { jobs: require('../reducers/jobs.js') };
 module.exports = combineReducers(reducers);
