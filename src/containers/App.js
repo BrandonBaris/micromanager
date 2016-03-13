@@ -13,9 +13,17 @@ import { connect } from 'react-redux';
 import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
+  componentWillMount(){
+    this.props.actions.getJobs([{
+      id: 99,
+      title: 'updated',
+      status: 'example'
+    }]);
+  }
+
   render() {
-    const {actions} = this.props;
-    return <Main actions={actions}/>;
+    const {actions, jobs} = this.props;
+    return <Main jobs={jobs} actions={actions} />;
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -24,16 +32,17 @@ class App extends Component {
  *       adjust it here.
  */
 App.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  jobs: PropTypes.array.isRequired
 };
 function mapStateToProps(state) {
   /* Populated by react-webpack-redux:reducer */
-  const props = {};
+  const props = { jobs: state.jobs };
   return props;
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = {};
+  const actions = { getJobs: require('../actions/getJobs.js') };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

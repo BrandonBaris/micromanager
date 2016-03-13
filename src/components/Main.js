@@ -2,15 +2,15 @@ require('normalize.css');
 require('styles/App.css');
 
 import React from 'react';
-
-let yeomanImage = require('../images/yeoman.png');
+import JobListComponent from './JobListComponent';
 
 class AppComponent extends React.Component {
   render() {
+    const {actions, jobs} = this.props;
     return (
       <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+        <h1>MicroManager</h1>
+        <JobListComponent jobs={jobs} actions={actions} />
       </div>
     );
   }
