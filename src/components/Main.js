@@ -14,6 +14,10 @@ openSansObserver.check().then(() => {
 });
 
 class AppComponent extends React.Component {
+  clickComplete(){
+    // this.props.actions.complete();
+    require('axios').post('/api/complete');
+  }
   render() {
     const {actions, jobs} = this.props;
     return (
@@ -24,7 +28,7 @@ class AppComponent extends React.Component {
             <p><i>Internet of Potatoes</i></p>
           </div>
           <div className="flexNewJobButtonArea">
-            <button className="newJobButton">
+            <button className="newJobButton" onClick={this.clickComplete}>
               New Job
             </button>
           </div>
