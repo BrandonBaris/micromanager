@@ -15,27 +15,27 @@ const STREAM_TYPE = {
 const M2X_KEY = process.env.M2X_APIKEY;
 const device_id = "fbc1b926ecad75a3d53a4fad6257ea7d";
 
-var mock_data = {
-  jobs: [
+var mock_data = JSON.stringify({
+  "jobs": [
     {
       "job_id": "job_name1",
       "start_time": Date.now(),
-      "hard_time_limit": 6000, // Optional hard time limit (in seconds) until this task gets completely marked out.  Default should be forever.
-      "initator": "some boss dude", // Master's ID since there can probably be more than 1 taskmaster
-      "check_bypass": false, // Flag to skip master approval. Continues task regardless of actual quality of work on task done by node.
+      "hard_time_limit": 6000, 
+      "initator": "some boss dude",
+      "check_bypass": false, 
       "tasks": [
         {
-          "node": "some_id1", // the slave to send this task too first `tasks[0]`.
+          "node": "some_id1", 
           "name": "Task 1: Do something.",
-          "time_allocated": 360, // Initial timer in seconds.
-          "completion_time": 0, // Amount of time actually taken to complete task.
-          "complete": false, // To flag this node's completion.
-          "approved": false, // Approval of master else node complete is `false` again.
-          "contested": false, // When flagged, master will be notified with `notes`
+          "time_allocated": 360, 
+          "completion_time": 0, 
+          "complete": false, 
+          "approved": false, 
+          "contested": false,
           "notes": "NOTES OR CONCERNS FOR MASTER TO READ ON CONTEST FLAG"
         },
         {
-          "node": "some_id2", // 2nd node to chain the task potato
+          "node": "some_id2",
           "name": "Task 2: Do more stuff",
           "time_allocated": 120,
           "complete": false,
@@ -103,9 +103,9 @@ var mock_data = {
         }
       ],
       "complete": false
-    },
+    }
   ]
-};
+})
 
 router.get('/test', (req,res)=>{
   res.send({ success : true });
@@ -121,21 +121,22 @@ router.get('/meta-stream', (req,res)=>{
 
 // updates meta streams current values
 router.put('/meta-stream', (req,res)=>{
-  var payload = req.body.value;
-  m2x.devices.setStreamValue( device_id, "meta-stream", mock_data, function(response) {
+  // var payload = req.body.value;
+  var payload = { "value": mock_data };
+  m2x.devices.setStreamValue( device_id, "meta-stream", payload, function(response) {
     res.send(response.json);
   });
 });
 
 // creates or updates a stream with the assigned ID
-router.post('/task/:id', (req,res)=>{
-  var params = {
-    type: STREAM_TYPE.ALPHANUMBERIC
-  };
-  m2x.devices.updateStream( device_id, req.params.id, params, function( response ){
-    res.send(response.json);
-  });
-});
+// router.post('/task/:id', (req,res)=>{
+//   var params = {
+//     type: STREAM_TYPE.ALPHANUMBERIC
+//   };
+//   m2x.devices.updateStream( device_id, req.params.id, params, function( response ){
+//     res.send(response.json);
+//   });
+// });
 
 // gets value of task
 router.get('/task/:id', (req,res)=>{
@@ -170,12 +171,12 @@ router.get('/node/:id', (req,res)=>{
   m2x.devices.stream( device_id, 'meta-stream', function(response) {
     var jobs;
     if( response != null ){
-      jobs = mock_data.jobs; // for testing
-      // var jobs = response.json.jobs;      
-    } 
-    // else {
-    //   return res.send([]);
-    // }
+      // jobs = mock_data.jobs; // for testing
+      console.log(JSON.parse(response.json.value).jobs);
+      var jobs = JSON.parse(response.json.value).jobs;      
+    } else {
+      return res.send([]);
+    }
 
     var parsed_res = jobs.filter( function( job ){
       // console.log('job',job);

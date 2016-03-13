@@ -11,7 +11,7 @@
           "node": "some_id1", // the slave to send this task too first `tasks[0]`.
           "name": "Task 1: Do something.",
           "time_allocated": 360, // Initial timer in seconds.
-          "completion_time": 0 // Amount of time actually taken to complete task.
+          "completion_time": 0, // Amount of time actually taken to complete task.
           "complete": false, // To flag this node's completion.
           "approved": false, // Approval of master else node complete is `false` again.
           "contested": false, // When flagged, master will be notified with `notes`
@@ -26,7 +26,7 @@
           "contested": false,
           "notes": ""
         }
-      ]
+      ],
       "complete": false
     },
     {
@@ -40,7 +40,7 @@
           "node": "some_id3",
           "name": "Task 1: Do something.",
           "time_allocated": 360,
-          "completion_time": 0 
+          "completion_time": 0,
           "complete": false, 
           "approved": false, 
           "contested": false,
@@ -55,7 +55,7 @@
           "contested": false,
           "notes": ""
         }
-      ]
+      ],
       "complete": false
     },
     {
@@ -69,7 +69,7 @@
           "node": "some_id1",
           "name": "Task 1: Do something.",
           "time_allocated": 360,
-          "completion_time": 0 
+          "completion_time": 0,
           "complete": false, 
           "approved": false, 
           "contested": false,
@@ -84,8 +84,8 @@
           "contested": false,
           "notes": ""
         }
-      ]
+      ],
       "complete": false
-    },
+    }
   ]
 }
